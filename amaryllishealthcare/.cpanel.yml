@@ -1,0 +1,15 @@
+---
+deployment:
+  tasks:
+    # Set deployment folder
+    - export DEPLOYPATH=/home/qy9nhh12xj4a/public_html/amaryllishealthcare.com/
+
+    # Remove old files
+    - /bin/rm -rf $DEPLOYPATH/*
+
+    # Copy only the dist folder contents to the live site folder
+    - /bin/cp -R dist/* $DEPLOYPATH
+
+    # Set file permissions
+    - /bin/find $DEPLOYPATH -type f -exec chmod 644 {} \;
+    - /bin/find $DEPLOYPATH -type d -exec chmod 755 {} \;

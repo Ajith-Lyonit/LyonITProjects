@@ -1,0 +1,1 @@
+import{j as s}from"./vendor-_CxnPn0d.js";const i=({item:t})=>s.jsxs("div",{className:"am-about-strip-card",children:[s.jsx("img",{src:t.itemImg,className:"img-fluid",alt:""}),s.jsxs("div",{className:"am-about-strip-cont",children:[s.jsx("h4",{children:s.jsx("strong",{children:t.itemText})}),s.jsx("p",{children:t.itemDesc})]})]});export{i as default};

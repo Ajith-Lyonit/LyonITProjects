@@ -1,0 +1,100 @@
+RewriteEngine On
+RewriteBase /
+
+#########################################
+# 0. Force HTTPS (first, so all rules use HTTPS)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#########################################
+# 1. Redirect specific PHP URLs (no query string)
+Redirect 301 /non-woven-shoe-cover.php https://www.amaryllishealthcare.com/infection-prevention-division/protective-essentials/non-woven-shoecover
+Redirect 301 /blogs.php https://www.amaryllishealthcare.com/blogs
+Redirect 301 /bouffant-cap.php https://www.amaryllishealthcare.com/infection-prevention-division/protective-essentials/bouffant-cap
+Redirect 301 /products.php/surgical-gowns https://www.amaryllishealthcare.com/infection-prevention-division/surgical-gowns
+Redirect 301 /disposable-drapes.php https://www.amaryllishealthcare.com/infection-prevention-division/surgical-drapes
+Redirect 301 /disposable-ok-kit.php https://www.amaryllishealthcare.com/infection-prevention-division/surgical-packs
+Redirect 301 /index.php https://www.amaryllishealthcare.com/
+Redirect 301 /products.php/kit.php https://www.amaryllishealthcare.com/infection-prevention-division/surgical-packs
+Redirect 301 /disposable-ot-kit.php https://www.amaryllishealthcare.com/infection-prevention-division/surgical-packs
+Redirect 301 /disposable-non-woven-gown.php https://www.amaryllishealthcare.com/infection-prevention-division/surgical-gowns/securecare-surgical-gown-ot-reinforced-surgeon-gown
+Redirect 301 /surgical-manufacturers.php https://www.amaryllishealthcare.com/
+Redirect 301 /surgical-wear.php https://www.amaryllishealthcare.com/infection-prevention-division/surgical-gowns
+Redirect 301 /pages/contact-us.php https://www.amaryllishealthcare.com/contactus
+Redirect 301 /pages/surgical-manufactures.php https://www.amaryllishealthcare.com/
+
+# Surgical packs redirects
+RewriteRule ^products\.php/surgical-packs/tkr-ot-pack$ /infection-prevention-division/surgical-packs/tkr-ot-pack [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/products\.php/surgical-gowns/surgeon-gown-eco[\s?]
+RewriteRule ^products\.php/surgical-gowns/surgeon-gown-eco$ /infection-prevention-division/surgical-gowns/surgeon-gown [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/products\.php/surgical-gowns/surgeon-gown-wraparound[\s?]
+RewriteRule ^products\.php/surgical-gowns/surgeon-gown-wraparound$ /infection-prevention-division/surgical-gowns/securecare-surgical-gown-ot-surgeon-gown [R=301,L]
+
+RewriteRule ^specialties\.php/ortho-care/thr-patient-pack$ /infection-prevention-division/surgical-packs/thr-patient-pack-eco [R=301,L]
+RewriteRule ^specialties\.php/cardio-care$ /infection-prevention-division/surgical-drapes/cardiac-drape [R=301,L]
+RewriteRule ^specialties\.php/neuro-care/major-drape-eco$ /infection-prevention-division/surgical-drapes/normal-delivery-drape-eco [R=301,L]
+RewriteRule ^specialties\.php/surgical-accessories/hole-drape-with-adhesive$ /infection-prevention-division/surgical-accessories/small-hole-drape-with-adhesive [R=301,L]
+RewriteRule ^products\.php/protective-apparel/scrub-suit-set$ /infection-prevention-division/surgical-gowns/scrub-suit-set [R=301,L]
+RewriteRule ^specialties\.php/cardio-care/angioplasty-ot-pack$ /infection-prevention-division/surgical-packs/angioplasty-ot-pack [R=301,L]
+RewriteRule ^specialties\.php/surgeon-care/cathlab-gown$ /infection-prevention-division/surgical-gowns/cathlab-gown [R=301,L]
+RewriteRule ^specialties\.php/gynaec-care/lscs-ot-pack$ https://www.amaryllishealthcare.com/infection-prevention-division/surgical-packs/lscs-ot-pack [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/pages/products\.php\?product=PCNL-Drape\s [NC]
+RewriteRule ^pages/products\.php$ https://www.amaryllishealthcare.com/infection-prevention-division/surgical-drapes/pcnl-drape? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/pages/products\.php\?product=LSCS-Patient-Pack\s [NC]
+RewriteRule ^pages/products\.php$ https://www.amaryllishealthcare.com/infection-prevention-division/surgical-packs/lscs-pack-eco-1? [R=301,L]
+
+RewriteRule ^products\.php/surgical-packs/lscs-patient-pack$ https://www.amaryllishealthcare.com/infection-prevention-division/surgical-packs/lscs-pack-eco-1 [R=301,L]
+
+# Redirect all "number-number-number.html" pages to homepage
+RewriteRule ^[0-9]+-[0-9]+-[0-9]+\.html$ https://www.amaryllishealthcare.com/ [R=301,L]
+
+#########################################
+# 2. Redirect PHP URLs with query string
+RewriteCond %{THE_REQUEST} \s/pages/specialties\.php\?specialty=Surgical-Accessories\s [NC]
+RewriteRule ^pages/specialties\.php$ https://www.amaryllishealthcare.com/infection-prevention-division/surgical-accessories? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/specialties\.php/neuro-care/major-drape$ [NC]
+RewriteRule ^.*$ https://www.amaryllishealthcare.com/infection-prevention-division/surgical-drapes/knee-o-drape-premium [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/specialties\.php/neuro-care/craniotomy-drape$ [NC]
+RewriteRule ^.*$ https://www.amaryllishealthcare.com/infection-prevention-division/surgical-drapes/craniotomy-drape [R=301,L]
+
+#########################################
+# 3. SPA-style fallback to index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html [L]
+
+#########################################
+# 4. Browser caching optimization (PageSpeed fix)
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Cache static assets for 1 year
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+
+  # Short cache for HTML
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|jpg|jpeg|png|gif|webp|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

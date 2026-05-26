@@ -1,0 +1,115 @@
+/* global stylesheet used here */
+@use './amstyles/global.scss' as *;
+@use './amstyles/amscss' as *;
+@use './amstyles/font.scss' as *;
+@use './amstyles//variables.scss' as *;
+
+.App-container {
+    width: auto;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+.container-fluid {
+    max-width: 100%;
+    padding-right: 50px !important;
+    padding-left: 50px !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.am-breadmap-flex {
+    margin-top: 8.5rem;
+}
+
+.am-prod-sol-bg{
+    margin-top: 8.5rem;
+}
+
+@media(max-width:1250px) {
+    .am-blog-detail-page h1 {
+        padding: 2.5rem 0 0 0rem;
+        transform: translateX(12.5%);
+    }
+}
+
+@media(min-width:1500px) {
+    .App-container {
+        width: 1400px;
+        margin: auto;
+        background-color: #ffffff;
+    }
+
+    .am-breadmap-flex {
+        margin-top: 0.5rem;
+    }
+
+
+    .am-blog-detail-page h1 {
+        padding: 2.5rem 0 0 0rem;
+        transform: translateX(10%);
+    }
+
+    .am-header {
+        position: relative !important;
+    }
+
+    .am-proddet-sizes {
+        width: 45vw;
+    }
+
+    .am-proddet-sizes div:nth-child(2) {
+        width: 40%;
+        line-height: 20px;
+    }
+
+    .am-hero-banner {
+        margin: 0;
+    }
+
+    .swiper-container,
+    .am-infec-prod-cat,
+    .am-prod-bg,
+    .am-blog-list-bg,
+    .am-common-font-1,
+    .am-blog-detail-page,
+    .am-career-bredcrump,
+    .am-prod-sol-bg {
+        margin-top: 0;
+    }
+}
+
+body {
+    background-color: #ffffff;
+}
+
+@media(max-width:600px) {
+    .App-container {
+        width: 100%;
+        margin: auto;
+    }
+
+    .container-fluid {
+        max-width: 100%;
+        padding-right: 20px !important;
+        padding-left: 20px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .swiper-container,
+    .am-infec-prod-cat,
+    .am-prod-bg,
+    .am-blog-list-bg,
+    .am-common-font-1,
+    .am-careers-comp,
+    .am-proddetails,
+    .am-mobile-sol-caps,
+    .am-blog-detail-page {
+        margin-top: 5.4rem;
+    }
+}
