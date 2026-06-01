@@ -6,8 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useState } from "react";
-import AMAutoComplete from "../custom/AMAutocomplete";
-import { options } from "../../types/TestValue";
+import AMExpoAutocomplete from "../custom/AMExpoAutocomplete";
 
 type JobListCardProps = {
   onPress?: () => void
@@ -35,11 +34,14 @@ export default function JobListCard({ onPress }: JobListCardProps) {
           </View>
 
           <View style={styles.autoCompleteContainer}>
-            <AMAutoComplete
-              label="Department"
-              list={options}
-              value={""}
-              onChange={(val: string) => { }}
+            <AMExpoAutocomplete
+              data={[
+                { id: "1", label: "department 1" },
+                { id: "2", label: "department 2" },
+                { id: "3", label: "department 3" },
+              ]}
+              onSelect={() => { }}
+              placeholder="department..."
             />
           </View>
         </View>

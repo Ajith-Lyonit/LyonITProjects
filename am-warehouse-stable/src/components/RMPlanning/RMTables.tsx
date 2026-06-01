@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { options, rmcols, rmdata, rmplancols, rmplandata } from "../../types/TestValue";
+import { newoptions, options, rmcols, rmdata, rmplancols, rmplandata } from "../../types/TestValue";
 import AMDataTable from "../../components/custom/AMDataTable";
 import AMBottomPopup from "../custom/AMPopup";
 import { Appsettings } from "../../layouts/AppSettings";
@@ -7,6 +7,7 @@ import AMButton from "../custom/AMbutton";
 import { useState } from "react";
 import AMAutoComplete from "../custom/AMAutocomplete";
 import { Checkbox } from "react-native-paper";
+import AMExpoAutocomplete from "../custom/AMExpoAutocomplete";
 
 type RMTablesProps = {
     isDesktop: boolean,
@@ -97,11 +98,10 @@ export default function RMTables({ isDesktop, appConf }: RMTablesProps) {
                                 </View>
                             </View>
                             <View style={{ paddingVertical: 10 }}>
-                                <AMAutoComplete
-                                    label="Product Name"
-                                    value={search}
-                                    onChange={setSearch}
-                                    list={options}
+                                <AMExpoAutocomplete
+                                    placeholder="Product Name"
+                                    onSelect={() => { }}
+                                    data={newoptions}
                                 />
                             </View>
                             <View style={{ flexDirection: 'row', paddingVertical: 10 }}>

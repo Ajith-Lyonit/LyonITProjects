@@ -6,17 +6,14 @@ import {
     Text,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import AMAutoComplete from "../../custom/AMAutocomplete";
 import { useCameraPermissions } from "expo-camera";
+import AMExpoAutocomplete from "../../custom/AMExpoAutocomplete";
+import { newoptions } from "../../../types/TestValue";
 
 export default function TransDocument() {
-    const [department, setDepartment] = useState("");
-    const [customer, setCustomer] = useState("");
-    const [product, setProduct] = useState("");
     const [showScanner, setShowScanner] = useState(false);
     const [permission, requestPermission] =
         useCameraPermissions();
-    const [barcode, setBarcode] = useState("");
 
     const scannedRef = useRef(false);
 
@@ -37,40 +34,37 @@ export default function TransDocument() {
 
     return (
         <View>
-                            <View style={styles.doubleCol}>
-                    <View style={styles.infoTopRow}>
-                        <View style={styles.infoCard}>
-                            <Text style={styles.infoLabel}>
-                                Product Name :
-                            </Text>
+            <View style={styles.doubleCol}>
+                <View style={styles.infoTopRow}>
+                    <View style={styles.infoCard}>
+                        <Text style={styles.infoLabel}>
+                            Product Name :
+                        </Text>
 
-                            <Text style={styles.infoValue}>
-                                Poly Bag LDPE+PP
-                            </Text>
-                        </View>
+                        <Text style={styles.infoValue}>
+                            Poly Bag LDPE+PP
+                        </Text>
+                    </View>
 
-                        <View style={styles.infoCard}>
-                            <Text style={styles.infoLabel}>
-                                Required Qty. :
-                            </Text>
+                    <View style={styles.infoCard}>
+                        <Text style={styles.infoLabel}>
+                            Required Qty. :
+                        </Text>
 
-                            <Text style={styles.infoValue}>
-                                505
-                            </Text>
-                        </View>
+                        <Text style={styles.infoValue}>
+                            505
+                        </Text>
                     </View>
                 </View>
+            </View>
             <View style={styles.row}>
                 <View style={styles.col}>
                     <View style={styles.inputRow}>
                         <View style={styles.inputWrapper}>
-                            <AMAutoComplete
+                            <AMExpoAutocomplete
                                 placeholder="RFID/Bar Code No"
-                                value={department}
-                                list={[]}
-                                onChange={(
-                                    val: React.SetStateAction<string>
-                                ) => setDepartment(val)}
+                                data={newoptions}
+                                onSelect={(val) => { }}
                             />
                             <Text>Poly Bag LDPE+PP Mix Transparent</Text>
                         </View>
@@ -98,13 +92,10 @@ export default function TransDocument() {
 
                 {/* Location */}
                 <View style={styles.col}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="A4-R2-L2-R2"
-                        value={customer}
-                        list={[]}
-                        onChange={(
-                            val: React.SetStateAction<string>
-                        ) => setCustomer(val)}
+                        data={newoptions}
+                        onSelect={(val) => { }}
                     />
                     <Text>A4-R2-L2-R2</Text>
                 </View>
@@ -113,13 +104,10 @@ export default function TransDocument() {
                 <View style={styles.col}>
                     <View style={styles.inputRow}>
                         <View style={styles.inputWrapper}>
-                            <AMAutoComplete
+                            <AMExpoAutocomplete
                                 placeholder="Actual Bin"
-                                value={product}
-                                list={[]}
-                                onChange={(
-                                    val: React.SetStateAction<string>
-                                ) => setProduct(val)}
+                                data={newoptions}
+                                onSelect={(val) => { }}
                             />
                             <Text>Qty. Picked : 560</Text>
                         </View>
@@ -218,7 +206,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: "#B7E4D3",
-        overflow: "hidden",
+        overflow: "visible",
     },
 
     summaryRow: {
@@ -265,7 +253,7 @@ const styles = StyleSheet.create({
     },
     doubleCol: {
         flex: 1,
-        marginBottom:6
+        marginBottom: 6
     },
 
     infoTopRow: {

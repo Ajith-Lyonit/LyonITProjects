@@ -3,7 +3,11 @@ export const options = [
   { label: "RM Planning", value: "rm-planning" },
   { label: "Job Card", value: "job-card" },
 ];
-
+export const newoptions = [
+    { id: "1", label: "Department 1" },
+    { id: "2", label: "Department 2" },
+    { id: "3", label: "Department 3" },
+  ]
 // export const columns = [
 //   { key: "itemcode", title: "Item Code", type: "text" },
 //   { key: "itemname", title: "Item Name", type: "text", width: true },
@@ -838,4 +842,47 @@ export const bomdata = [
     "unitPrice": 36,
     "total": 50000
   }
+];
+
+export const carddata = [
+  {
+    id: 1,
+    rmid: "I00927",
+    rmName: "PRINTED GUMTAPE 3 INCH BROWN",
+    reqty: 100,
+    actlqty: 95,
+    wasteqty: 5,
+  },
+  {
+    id: 2,
+    rmid: "I00231",
+    rmName: "CARTON BOX (LX59 WX33 HX43CM) - MEDIUM",
+    reqty: 200,
+    actlqty: 180,
+    wasteqty: 20,
+  },
+  {
+    id: 3,
+    rmid: "I00085",
+    rmName: "GAUZE SWAB",
+    reqty: 500,
+    actlqty: 480,
+    wasteqty: 20,
+  },
+  {
+    id: 4,
+    rmid: "I02907",
+    rmName: "PACKING TAPE 2 INCH",
+    reqty: 150,
+    actlqty: 140,
+    wasteqty: 10,
+  },
+  {
+    id: 5,
+    rmid: "I01062",
+    rmName: "BUBBLE WRAP ROLL",
+    reqty: 75,
+    actlqty: 70,
+    wasteqty: 5,
+  },
 ];

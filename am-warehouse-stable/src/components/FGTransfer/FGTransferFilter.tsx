@@ -1,12 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
-import { fgcols, fgdata, options } from "../../types/TestValue";
-import AMAutoComplete from "../../components/custom/AMAutocomplete";
+import { fgcols, fgdata, newoptions, options } from "../../types/TestValue";
 import AMDatePicker from "../../components/custom/AMDatepicker";
 import AMDataTable from "../../components/custom/AMDataTable";
 import { useLayout } from "../../layouts/AppLayoutProvider";
 import AMBottomPopup from "../custom/AMPopup";
 import FGInfocard from "./FGPopup";
+import AMExpoAutocomplete from "../custom/AMExpoAutocomplete";
 
 export default function FGTransferFilter() {
   const [value, setValue] = useState("");
@@ -27,35 +27,31 @@ export default function FGTransferFilter() {
       <Text style={styles.title}>FG Transfer</Text>
       <View style={[styles.container, isDesktop && styles.desktopRow]}>
         <View style={[styles.field, getFieldStyle()]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="Planning Doc No."
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions  }
+            onSelect={(val) => {}}
           />
         </View>
         <View style={[styles.field, getFieldStyle()]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="BAGALUR b1"
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions  }
+            onSelect={(val) => {}}
           />
         </View>
         <View style={[styles.field, getFieldStyle()]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="BLISTER"
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions  }
+            onSelect={(val) => {}}
           />
         </View>
         <View style={[styles.field, getFieldStyle()]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="day Shift"
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions }
+            onSelect={(val) => {}}
           />
         </View>
         <View style={[styles.field, getFieldStyle()]}>
@@ -65,11 +61,10 @@ export default function FGTransferFilter() {
           <AMDatePicker onChange={(val) => console.log(val)} />
         </View>
         <View style={[styles.field, getFieldStyle(true)]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="Item Wise"
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions  }
+            onSelect={(val) => {}}
           />
         </View>
       </View>

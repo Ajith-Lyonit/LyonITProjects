@@ -13,6 +13,8 @@ import AMButton from "../../custom/AMbutton";
 import AMBottomPopup from "../../custom/AMPopup";
 import BatchDocument from "../components/BatchDocument";
 import { useLayout } from "../../../layouts/AppLayoutProvider";
+import AMExpoAutocomplete from "../../custom/AMExpoAutocomplete";
+import { newoptions } from "../../../types/TestValue";
 
 export default function SterileDoument({ route }: any) {
     const [showScanner, setShowScanner] = useState(false);
@@ -20,13 +22,7 @@ export default function SterileDoument({ route }: any) {
     const [permission, requestPermission] = useCameraPermissions();
     const { isDesktop, appConf } = useLayout();
     const scannedRef = useRef(false);
-    const [value, setValue] = useState("");
     const [barcode, setBarcode] = useState("");
-
-    const options = [
-        { label: "Item A", value: "A" },
-        { label: "Item B", value: "B" },
-    ];
 
     const [tableData, setTableData] = useState([
         { sno: 1, item: "Poly Bag LDPE+PP Mix Transparent", qty: 10, recqty: 5 },
@@ -80,11 +76,10 @@ export default function SterileDoument({ route }: any) {
 
                         <View style={styles.searchRow}>
                             <View style={{ flex: 10 }}>
-                                <AMAutoComplete
+                                <AMExpoAutocomplete
                                     placeholder="Item name"
-                                    value={value}
-                                    list={options}
-                                    onChange={(val) => setValue(val)}
+                                    data={newoptions}
+                                    onSelect={(val) => { }}
                                 />
                             </View>
                             <TouchableOpacity

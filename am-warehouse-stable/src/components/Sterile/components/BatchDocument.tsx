@@ -6,10 +6,10 @@ import {
     useWindowDimensions,
 } from "react-native";
 import { useRef, useState } from "react";
-import AMAutoComplete from "../../custom/AMAutocomplete";
-import AMButton from "../../custom/AMbutton";
 import { MaterialIcons } from "@expo/vector-icons";
 import { CameraView, useCameraPermissions } from "expo-camera";
+import AMExpoAutocomplete from "../../custom/AMExpoAutocomplete";
+import { newoptions } from "../../../types/TestValue";
 
 export default function BatchDocument() {
     const [value, setValue] = useState("");
@@ -30,7 +30,6 @@ export default function BatchDocument() {
 
     return (
         <View style={styles.container}>
-            {/* SEARCH */}
             <View style={styles.topcont}>
                 <Text style={{ fontWeight: 'bold', fontSize: isDesktop ? 18 : 15 }}>Item Name: Poly bag LDPE+PP</Text>
             </View>
@@ -40,11 +39,10 @@ export default function BatchDocument() {
             </View>
             <View style={styles.searchRow}>
                 <View style={{ flex: 10 }}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="RFID/Bar Code"
-                        value={value}
-                        list={[]}
-                        onChange={setValue}
+                        data={newoptions}
+                        onSelect={(val) => { }}
                     />
                 </View>
 
@@ -60,11 +58,9 @@ export default function BatchDocument() {
 
             </View>
 
-            {/* LIST */}
             {[1, 2, 3].map((item) => (
                 <View key={item} style={styles.card}>
                     {isDesktop ? (
-                        // 💻 DESKTOP → all 6 cols in one row, no separate heading
                         <View style={styles.desktopRow}>
                             <Text style={[styles.desktopText, styles.rfidText]}>
                                 RFID/Bar Code
@@ -76,7 +72,6 @@ export default function BatchDocument() {
                             <Text style={styles.desktopText}>EXP Date : 200128</Text>
                         </View>
                     ) : (
-                        // 📱 MOBILE → unchanged
                         <>
                             <Text style={styles.heading}>RFID/Bar Code</Text>
                             <View style={styles.infoRow}>
@@ -95,7 +90,6 @@ export default function BatchDocument() {
                     )}
                 </View>
             ))}
-            {/* FOOTER */}
             <View style={styles.footer}>
                 <TouchableOpacity style={styles.btn} onPress={() => { }}>
                     <Text style={styles.btnText}>Update</Text>
@@ -111,7 +105,6 @@ export default function BatchDocument() {
                         onBarcodeScanned={handleScan}
                     />
 
-                    {/* 🔳 CENTER SQUARE */}
                     <View style={styles.scanBoxWrapper}>
                         <View style={styles.scanBox} />
                         <Text style={{ color: '#fff', textAlign: 'center', width: '70%', paddingVertical: 10 }}>Place a barcode inside the viewfinder rectangle to scan it. if scan failed enter manually</Text>

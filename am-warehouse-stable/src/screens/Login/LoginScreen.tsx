@@ -16,7 +16,7 @@ export default function Login({ onLogin }: any) {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [showPassword, setShowPassword] = useState(false);
   const isDesktop = width >= 800;
 
   const handleLogin = () => {
@@ -42,21 +42,17 @@ export default function Login({ onLogin }: any) {
 
   return (
     <View style={styles.container}>
-      {/* TOP IMAGE */}
       <View style={[styles.topWrapper, { height: topHeight }]}>
         <Image
           source={require("../../../assets/splash/deskarcup.png")}
           style={styles.topImage}
           resizeMode={isDesktop ? "contain" : "cover"}
         />
-
-        {/* TITLE OVER IMAGE */}
         <View style={styles.titleOverlay}>
           <Text style={styles.title}>Bapuji Surgicals</Text>
         </View>
       </View>
 
-      {/* FORM */}
       <View style={styles.center}>
         <Text style={styles.loginTitle}>Login</Text>
 
@@ -68,15 +64,21 @@ export default function Login({ onLogin }: any) {
           value={username}
           onChangeText={setUsername}
         />
-
         <Text style={styles.label}>Password</Text>
+
         <TextInput
           mode="outlined"
           placeholder="Enter password"
-          secureTextEntry
+          secureTextEntry={!showPassword}
           style={styles.input}
           value={password}
           onChangeText={setPassword}
+          right={
+            <TextInput.Icon
+              icon={showPassword ? "eye-off" : "eye"}
+              onPress={() => setShowPassword(!showPassword)}
+            />
+          }
         />
 
         <Text style={styles.forgot}>Forgot Password</Text>
@@ -84,7 +86,6 @@ export default function Login({ onLogin }: any) {
         <AMButton title="Login" onPress={handleLogin} />
       </View>
 
-      {/* LOGO */}
       <View style={styles.logoWrapper}>
         <Image
           source={require("../../../assets/logo.png")}

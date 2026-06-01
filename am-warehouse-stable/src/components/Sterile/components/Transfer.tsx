@@ -1,10 +1,11 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AMAutoComplete from "../../custom/AMAutocomplete";
-import { options } from "../../../types/TestValue";
+import { newoptions, options } from "../../../types/TestValue";
 import { useState } from "react";
 import { RootStackParamList } from "../../../navigation/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+import AMExpoAutocomplete from "../../custom/AMExpoAutocomplete";
 type NavProps = NativeStackNavigationProp<RootStackParamList>;
 export default function TransferCard() {
     const [value, setValue] = useState("")
@@ -21,19 +22,17 @@ export default function TransferCard() {
                 </View>
 
                 <View style={styles.right}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="Warehouse 1"
-                        value={value}
-                        list={options}
-                        onChange={(val) => setValue(val)}
+                        data={newoptions}
+                        onSelect={(val) => { }}
                     />
                 </View>
             </View>
-            <AMAutoComplete
+            <AMExpoAutocomplete
                 placeholder="ITR Document no"
-                value={value}
-                list={options}
-                onChange={(val) => setValue(val)}
+                data={newoptions}
+                onSelect={(val) => { }}
             />
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
                 <TouchableOpacity key={item} style={styles.jobcard} onPress={() =>
@@ -50,6 +49,15 @@ export default function TransferCard() {
 
                 </TouchableOpacity>
             ))}
+            <View style={{ flexDirection: "row", marginTop: 20 }}>
+                <View style={{ flex: 4 }} />
+                <View style={{ flex: 3, alignItems: "center" }}>
+                    <TouchableOpacity style={[styles.btn, { width: "100%" }]} onPress={() => { }}>
+                        <Text style={styles.btnText}>Transfer</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flex: 4 }} />
+            </View>
         </ScrollView>
     );
 }
@@ -61,11 +69,9 @@ const styles = StyleSheet.create({
         gap: 10,
         marginBottom: 20
     },
-
     left: {
         flex: 5,
     },
-
     right: {
         flex: 7,
     },
@@ -92,5 +98,19 @@ const styles = StyleSheet.create({
     partial: {
         color: "#E67E22",
         fontWeight: "600",
+    },
+    btn: {
+        backgroundColor: "#02B6B6",
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 6,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    btnText: {
+        color: "#000",
+        fontSize: 16,
+        fontWeight: "500",
+        textAlign: "center",
     },
 });

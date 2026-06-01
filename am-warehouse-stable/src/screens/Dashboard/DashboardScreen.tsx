@@ -1,4 +1,4 @@
-import { View, StyleSheet, useWindowDimensions, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import PendingCard from "../../components/Production/PendingCards";
 import PendingRequestCard from "../../components/Production/RequestCard";
 import ListCard from "../../components/Production/ListCards";
@@ -9,13 +9,12 @@ import { useLayout } from "../../layouts/AppLayoutProvider";
 import AMBottomPopup from "../../components/custom/AMPopup";
 import AsPerSoCustomerWise from "../../components/JobPlanning/Aspersocustomerwise";
 import AMAutoComplete from "../../components/custom/AMAutocomplete";
+import AMButton from "../../components/custom/AMbutton";
 
 export default function DashboardScreen() {
   const navigation = useNavigation();
-  const { width } = useWindowDimensions();
   const [search, setSearch] = useState("");
   const { isDesktop, appConf } = useLayout()
-  const [enabled, setEnabled] = useState(false);
   const [popupState, setPopupState] = useState({
     visible: false,
     view: "list",
@@ -127,33 +126,55 @@ export default function DashboardScreen() {
           </View>
         )}
         {popupState.view === "edit" && (
-          <View >
-            <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10 }}>
-              <Text style={{ fontWeight: 'bold' }}>RM Name</Text>
-              <Text>{popupState.data.rmName}</Text>
+          <View style={{ flexDirection: 'row', width: '100%' }}>
+            <View style={{ flex: 1 }} />
+            <View style={{ flex: 2 }}>
+              <View style={{ flexDirection: 'row', paddingVertical: 10 }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontWeight: 'bold' }}>RM Name</Text>
+                </View>
+                <View style={{ flex: 2 }}>
+                  <Text>{popupState.data !== null && popupState.data.rmName}</Text>
+                </View>
+              </View>
+              <View style={{ flexDirection: 'row', paddingVertical: 10 }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontWeight: 'bold' }}>Product ID</Text>
+                </View>
+                <View style={{ flex: 2 }}>
+                  <Text>I01252</Text>
+                </View>
+              </View>
+              <View style={{ paddingVertical: 10 }}>
+                <AMAutoComplete
+                  label="Product Name"
+                  value={search}
+                  onChange={setSearch}
+                  list={[]}
+                />
+              </View>
+              <View style={{ flexDirection: 'row', paddingVertical: 10 }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontWeight: 'bold' }}>Alternate RM</Text>
+                </View>
+                <View style={{ flex: 2 }}>
+                  <Text>I00928</Text>
+                </View>
+              </View>
+              <View style={{ paddingVertical: 16 }}>
+                <AMButton
+                  title="Update"
+                  onPress={() =>
+                    setPopupState(() => ({
+                      data: null,
+                      view: 'list',
+                      visible: false,
+                    }))
+                  }
+                />
+              </View>
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10 }}>
-              <Text style={{ fontWeight: 'bold' }}>Product ID</Text>
-              <Text>I00927</Text>
-            </View>
-            <View style={{ width: "100%" }}>
-              <AMAutoComplete
-                label="product Name"
-                value={search}
-                onChange={setSearch}
-                list={[]}
-              />
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10 }}>
-              <Text style={{ fontWeight: 'bold' }}>Alternate RM</Text>
-              <Text>I00928</Text>
-            </View>
-            <TouchableOpacity
-              style={styles.btn}
-              onPress={() => setPopupState((prev) => ({ ...prev, view: "list" }))}
-            >
-              <Text style={styles.btnText}>Update</Text>
-            </TouchableOpacity>
+            <View style={{ flex: 1 }} />
           </View>
         )}
 

@@ -1,15 +1,13 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import AMAutoComplete from "../../custom/AMAutocomplete";
-import { options } from "../../../types/TestValue";
-import { useState } from "react";
+import { newoptions } from "../../../types/TestValue";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../navigation/types";
+import AMExpoAutocomplete from "../../custom/AMExpoAutocomplete";
 
 type NavProps = NativeStackNavigationProp<RootStackParamList>;
 
 export default function RecieptCard() {
-  const [value, setValue] = useState("")
   
 const navigation = useNavigation<NavProps>();
   return (
@@ -18,11 +16,10 @@ const navigation = useNavigation<NavProps>();
       nestedScrollEnabled
       showsVerticalScrollIndicator
     >
-      <AMAutoComplete
+      <AMExpoAutocomplete
         placeholder="Item name"
-        value={value}
-        list={options}
-        onChange={(val) => setValue(val)}
+        data={newoptions}
+        onSelect={(val) => {}}
       />
       {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
         <TouchableOpacity key={item} style={styles.jobcard} onPress={() =>

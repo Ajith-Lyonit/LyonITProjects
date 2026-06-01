@@ -1,23 +1,18 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import AMAutoComplete from "../../custom/AMAutocomplete";
-import { etoincol, etoindata, options } from "../../../types/TestValue";
+import { etoincol, etoindata, newoptions, options } from "../../../types/TestValue";
 import { useState } from "react";
 import AMDatePicker from "../../custom/AMDatepicker";
 import AMDataTable from "../../custom/AMDataTable";
 import AMButton from "../../custom/AMbutton";
 import { TextInput } from "react-native-paper";
+import AMExpoAutocomplete from "../../custom/AMExpoAutocomplete";
 
 type ETOINCardProps = {
     isDesktop: boolean
 }
 
 export default function ETOINCard({ isDesktop }: ETOINCardProps) {
-    const [value, setValue] = useState({
-        unit: "",
-        shift: "",
-        department: "",
-        itemname: ""
-    })
     const itemWidth = isDesktop ? "16.66%" : "33.33%";
     return (
         <ScrollView
@@ -28,29 +23,26 @@ export default function ETOINCard({ isDesktop }: ETOINCardProps) {
             <View style={styles.containereto}>
 
                 <View style={[styles.item, { width: itemWidth }]}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="Bagalur B1"
-                        value={value.unit}
-                        list={options}
-                        onChange={(val) => setValue(prev => ({ ...prev, unit: val }))}
+                        data={newoptions}
+                        onSelect={(val) => { }}
                     />
                 </View>
 
                 <View style={[styles.item, { width: itemWidth }]}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="Day Shift"
-                        value={value.shift}
-                        list={options}
-                        onChange={(val) => setValue(prev => ({ ...prev, shift: val }))}
+                        data={newoptions}
+                        onSelect={(val) => { }}
                     />
                 </View>
 
                 <View style={[styles.item, { width: itemWidth }]}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="ETO Machine"
-                        value={value.department}
-                        list={options}
-                        onChange={(val) => setValue(prev => ({ ...prev, department: val }))}
+                        data={newoptions}
+                        onSelect={(val) => { }}
                     />
                 </View>
 
@@ -63,11 +55,10 @@ export default function ETOINCard({ isDesktop }: ETOINCardProps) {
                 </View>
 
                 <View style={[styles.item, { width: itemWidth }]}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="Item name"
-                        value={value.itemname}
-                        list={options}
-                        onChange={(val) => setValue(prev => ({ ...prev, itemname: val }))}
+                        data={newoptions}
+                        onSelect={(val) => { }}
                     />
                 </View>
             </View>

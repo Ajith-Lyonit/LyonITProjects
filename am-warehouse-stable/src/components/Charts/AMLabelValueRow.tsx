@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     borderWidth: 1,
-    overflow: "hidden",
+    overflow: "visible",
     width: "100%",
   },
   box: {

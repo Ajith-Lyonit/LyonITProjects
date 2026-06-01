@@ -200,17 +200,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderColor: "#fff",
-    borderRadius: 65, // half of 130
-    overflow: "hidden",
+    borderRadius: 65,
+    overflow: "visible",
   },
-
   closeBtn: {
     margin: 0,
     position: 'absolute',
     right: 10,
     top: 40
   },
-
   content: {
     flex: 1,
   },

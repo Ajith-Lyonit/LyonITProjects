@@ -1,13 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
-import { useState } from "react";
-import { options } from "../../types/TestValue";
-import AMAutoComplete from "../custom/AMAutocomplete";
+import { newoptions } from "../../types/TestValue";
 import AMDatePicker from "../custom/AMDatepicker";
 import JobCardTables from "./JobCardTable";
 import { useLayout } from "../../layouts/AppLayoutProvider";
+import AMExpoAutocomplete from "../custom/AMExpoAutocomplete";
 
 export default function JobCardFilter() {
-  const [value, setValue] = useState("");
   const { isDesktop, appConf } = useLayout();
 
   const getFieldStyle = (isFullWidth = false) => {
@@ -25,38 +23,34 @@ export default function JobCardFilter() {
       <View style={[styles.container, isDesktop && styles.desktopRow]}>
 
         <View style={[styles.field, getFieldStyle()]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="Planning Doc No."
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions}
+            onSelect={() => { }}
           />
         </View>
 
         <View style={[styles.field, getFieldStyle()]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="Unit name"
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions}
+            onSelect={() => { }}
           />
         </View>
 
         <View style={[styles.field, getFieldStyle()]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="Department"
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions}
+            onSelect={() => { }}
           />
         </View>
 
         <View style={[styles.field, getFieldStyle()]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="Shift"
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions}
+            onSelect={() => { }}
           />
         </View>
 
@@ -70,11 +64,10 @@ export default function JobCardFilter() {
 
         {/* Customer Wise */}
         <View style={[styles.field, getFieldStyle(true)]}>
-          <AMAutoComplete
+          <AMExpoAutocomplete
             placeholder="Item Name"
-            value={value}
-            list={options}
-            onChange={(val) => setValue(val)}
+            data={newoptions}
+            onSelect={() => { }}
           />
         </View>
 
@@ -95,7 +88,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    flexDirection: "row",   
+    flexDirection: "row",
     flexWrap: "wrap",
     gap: 8,
     paddingBottom: 20,

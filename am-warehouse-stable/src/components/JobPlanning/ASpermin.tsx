@@ -1,12 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
-import { columns, data, } from "../../types/TestValue";
+import { columns, data, newoptions, } from "../../types/TestValue";
 import AMDataTable from "../../components/custom/AMDataTable";
 import JobListCard from "../Production/JobList";
 import { useLayout } from "../../layouts/AppLayoutProvider";
 import AMBottomPopup from "../custom/AMPopup";
 import AsPerSoCustomerWise from "./Aspersocustomerwise";
 import AMAutoComplete from "../custom/AMAutocomplete";
+import AMExpoAutocomplete from "../custom/AMExpoAutocomplete";
 
 export default function AsPerMin() {
     const [value, setValue] = useState("");
@@ -97,11 +98,10 @@ export default function AsPerMin() {
                                 <Text>I00927</Text>
                             </View>
                             <View style={{ width: "100%" }}>
-                                <AMAutoComplete
-                                    label="product Name"
-                                    value={search}
-                                    onChange={setSearch}
-                                    list={[]}
+                                <AMExpoAutocomplete
+                                    placeholder="Product Name"
+                                    onSelect={() => { }}
+                                    data={newoptions}
                                 />
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10 }}>

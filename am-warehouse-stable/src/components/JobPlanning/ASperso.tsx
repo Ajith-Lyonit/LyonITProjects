@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
-import { mincol, mindata, options, scols, spdata } from "../../types/TestValue";
+import { mincol, mindata, newoptions, options, scols, spdata } from "../../types/TestValue";
 import AMAutoComplete from "../../components/custom/AMAutocomplete";
 import AMDataTable from "../../components/custom/AMDataTable";
 import JobListCard from "../Production/JobList";
@@ -8,6 +8,7 @@ import AMBottomPopup from "../custom/AMPopup";
 import AsPerSoCustomerWise from "./Aspersocustomerwise";
 import { useLayout } from "../../layouts/AppLayoutProvider";
 import AMButton from "../custom/AMbutton";
+import AMExpoAutocomplete from "../custom/AMExpoAutocomplete";
 
 type SoProps = {
     ivalue: boolean,
@@ -146,11 +147,10 @@ export default function AsPerSo({ ivalue, checkminso }: SoProps) {
                                 </View>
                             </View>
                             <View style={{ paddingVertical: 10 }}>
-                                <AMAutoComplete
-                                    label="Product Name"
-                                    value={search}
-                                    onChange={setSearch}
-                                    list={options}
+                                <AMExpoAutocomplete
+                                    placeholder="Product Name"
+                                    onSelect={() => { }}
+                                    data={newoptions}
                                 />
                             </View>
                             <View style={{ flexDirection: 'row', paddingVertical: 10 }}>
@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-evenly",
         gap: 8,
+        overflow: "visible",
     },
     item: {
         width: "32%",
@@ -199,6 +200,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         gap: 8,
+        overflow: "visible",
     },
     innerItem: {
         width: "50%",

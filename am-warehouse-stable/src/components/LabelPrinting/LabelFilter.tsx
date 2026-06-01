@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
-import { droptions, labcols, labdata, options } from "../../types/TestValue";
+import { droptions, labcols, labdata, newoptions, options } from "../../types/TestValue";
 import AMAutoComplete from "../custom/AMAutocomplete";
 import { useLayout } from "../../layouts/AppLayoutProvider";
 import AMDataTable from "../custom/AMDataTable";
@@ -8,6 +8,7 @@ import AMBottomPopup from "../custom/AMPopup";
 import { IconButton, TextInput } from "react-native-paper";
 import AMButton from "../custom/AMbutton";
 import AsPerSoCustomerWise from "../JobPlanning/Aspersocustomerwise";
+import AMExpoAutocomplete from "../custom/AMExpoAutocomplete";
 
 
 export default function LabelFilter() {
@@ -32,19 +33,18 @@ export default function LabelFilter() {
             </View>
             <View style={styles.container}>
                 <View style={{ width: '100%' }}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="Planning Doc No."
-                        value={value}
-                        list={options} onChange={(val) => setValue(val)} />
+                        onSelect={() => { }}
+                        data={newoptions} />
                 </View>
             </View>
             <View style={styles.rowplus}>
                 <View style={{ flex: !isDesktop ? 10 : 40 }}>
-                    <AMAutoComplete
+                    <AMExpoAutocomplete
                         placeholder="Item Name"
-                        value={value}
-                        list={options}
-                        onChange={(val) => setValue(val)}
+                        data={newoptions}
+                        onSelect={() => { }}
                     />
                 </View>
 
@@ -118,11 +118,10 @@ export default function LabelFilter() {
                                 </View>
                             </View>
                             <View style={{ paddingVertical: 10 }}>
-                                <AMAutoComplete
-                                    label="Product Name"
-                                    value={search}
-                                    onChange={setSearch}
-                                    list={options}
+                                <AMExpoAutocomplete
+                                    placeholder="Product Name"
+                                    data={newoptions}
+                                    onSelect={() => { }}
                                 />
                             </View>
                             <View style={{ flexDirection: 'row', paddingVertical: 10 }}>

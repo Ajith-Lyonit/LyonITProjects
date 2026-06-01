@@ -12,6 +12,8 @@ import AMBottomPopup from "../../custom/AMPopup";
 import { useLayout } from "../../../layouts/AppLayoutProvider";
 import TransDocument from "../components/TranDocument";
 import AMAutoComplete from "../../custom/AMAutocomplete";
+import AMExpoAutocomplete from "../../custom/AMExpoAutocomplete";
+import { newoptions } from "../../../types/TestValue";
 
 export default function TransferDoument({ route }: any) {
     const [showScanner, setShowScanner] = useState(false);
@@ -82,11 +84,10 @@ export default function TransferDoument({ route }: any) {
 
                         <View style={styles.searchRow}>
                             <View style={{ flex: 10 }}>
-                                <AMAutoComplete
+                                <AMExpoAutocomplete
                                     placeholder="Item name"
-                                    value={value}
-                                    list={options}
-                                    onChange={(val) => setValue(val)}
+                                    data={newoptions}
+                                    onSelect={(val) => { }}
                                 />
                             </View>
                             <TouchableOpacity
@@ -156,6 +157,15 @@ export default function TransferDoument({ route }: any) {
                 visible={popState.visible}
             >
                 <TransDocument />
+                <View style={{ flexDirection: "row",marginTop: 20 }}>
+                    <View style={{ flex: 4 }} />
+                    <View style={{ flex: 3, alignItems: "center" }}>
+                        <TouchableOpacity style={[styles.btn, { width: "100%" }]} onPress={() =>setPopstate({ visible: false })}>
+                            <Text style={styles.btnText}>Update</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 4 }} />
+                </View>
             </AMBottomPopup>
 
             {showScanner && (
